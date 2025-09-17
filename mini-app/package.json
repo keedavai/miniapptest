@@ -1,0 +1,14 @@
+{
+  "name": "mini-app-static",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pure HTML/CSS/JS fullscreen responsive mini app.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "serve ."
+  },
+  "keywords": ["mini-app", "responsive", "fullscreen", "static"],
+  "author": "",
+  "license": "MIT"
+}
