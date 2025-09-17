@@ -4,31 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#667eea" />
-  <title>Mini App - Fullscreen Responsive</title>
-  <link rel="icon" href="/public/favicon.ico" />
+  <title>Google Drive Index - File Explorer</title>
+  <link rel="icon" href="./favicon.ico" />
   <link rel="stylesheet" href="./styles.css" />
-  <meta name="description" content="Fullscreen responsive mini app (desktop landscape & mobile portrait)." />
-  <style>
-    /* Critical minimal styles (rest in styles.css) */
-    html,body{margin:0;padding:0;height:100%;}
-  </style>
+  <meta name="description" content="Google Drive Index - Browse and list your files" />
 </head>
 <body>
-  <div id="app" class="app loading">
+  <div id="app" class="app">
     <header class="app-header">
-      <h1 class="app-title">Mini App</h1>
-      <p class="tagline">Adaptive fullscreen experience</p>
+      <h1 class="app-title">📂 Drive Index</h1>
+      <p class="tagline">Browse your files anywhere</p>
     </header>
+    
     <main class="app-main">
-      <div class="card" id="card">
-        <h2 id="modeTitle">Loading...</h2>
-        <p id="modeDesc">Detecting device & orientation.</p>
-        <button id="actionBtn" class="btn-primary">Click Me</button>
-        <div class="info" id="info"></div>
+      <div class="drive-container">
+        <!-- Search and Controls -->
+        <div class="controls">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search files..." />
+            <button id="searchBtn">🔍</button>
+          </div>
+          <div class="view-controls">
+            <button id="listView" class="active">📋 List</button>
+            <button id="gridView">🔲 Grid</button>
+            <button id="refreshBtn">🔄 Refresh</button>
+          </div>
+        </div>
+
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+          <span id="currentPath">📁 Root</span>
+        </div>
+
+        <!-- File Listing Area -->
+        <div class="file-explorer" id="fileExplorer">
+          <div class="loading" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p>Loading files...</p>
+          </div>
+          
+          <!-- Files will be populated here -->
+          <div class="file-list" id="fileList" style="display: none;">
+            <!-- Example file items (will be replaced by script) -->
+            <div class="file-item folder">
+              <div class="file-icon">📁</div>
+              <div class="file-info">
+                <div class="file-name">Documents</div>
+                <div class="file-details">Folder • Modified 2 days ago</div>
+              </div>
+              <div class="file-actions">
+                <button class="btn-action">Open</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">📭</div>
+          <h3>No files found</h3>
+          <p>This folder is empty or no files match your search.</p>
+        </div>
       </div>
     </main>
-    <footer class="app-footer">&copy; <span id="year"></span> Mini App</footer>
+
+    <footer class="app-footer">
+      <span>Google Drive Index • <span id="year"></span></span>
+      <span id="fileCount">0 items</span>
+    </footer>
   </div>
+
+  <!-- Configuration Modal -->
+  <div class="modal" id="configModal">
+    <div class="modal-content">
+      <h3>Configure Google Drive</h3>
+      <p>To use this index, you need to configure your Google Drive API credentials:</p>
+      <div class="config-form">
+        <label>Google Drive Folder ID:</label>
+        <input type="text" id="folderIdInput" placeholder="Enter your Google Drive folder ID" />
+        <label>API Key:</label>
+        <input type="text" id="apiKeyInput" placeholder="Enter your Google Drive API key" />
+        <div class="modal-actions">
+          <button id="saveConfig" class="btn-primary">Save Configuration</button>
+          <button id="closeModal" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="./script.js" defer></script>
 </body>
 </html>
